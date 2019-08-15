@@ -22,7 +22,7 @@ namespace WebApplication1.Controllers
 
         public ActionResult Index()
         {
-         //   Session.RemoveAll(); //登入時清空所有 Session 資料
+           Session.RemoveAll(); //登入時清空所有 Session 資料
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, "Ben", DateTime.Now, DateTime.Now.AddMinutes(30), false, "", FormsAuthentication.FormsCookiePath);
             string encTicket = FormsAuthentication.Encrypt(ticket);
             Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
