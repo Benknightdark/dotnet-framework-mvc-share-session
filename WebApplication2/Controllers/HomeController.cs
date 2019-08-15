@@ -10,6 +10,8 @@ namespace WebApplication2.Controllers
     {
         public ActionResult Index()
         {
+            Session["aa"] = Session["aa"] == null ? "null" : Session["aa"].ToString();
+            ViewBag.aa = Session["aa"];
             return View();
         }
 
