@@ -1,4 +1,4 @@
-# Usage (Please Using CommandLine)
+# Usage (*Notice: Use CommandLine!!!!!!!!!!!!!)
 ## (1) Create Sql Server Instance
 - If you have installed SQL Server Instance, you can ignore this step.
 - docker-compose -f "docker-compose.yml" up -d --build
