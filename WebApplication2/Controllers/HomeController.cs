@@ -3,15 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace WebApplication2.Controllers
 {
     public class HomeController : Controller
     {
+        public HttpContextBase Context { get; set; }
+        public HomeController(HttpContextBase context)
+        {
+            this.Context = context;
+        }
+        public HomeController()
+        {
+            //Empty
+        }
         public ActionResult Index()
         {
-            Session["aa"] = Session["aa"] == null ? "null" : Session["aa"].ToString();
-            ViewBag.aa = Session["aa"];
+            //Session.RemoveAll();
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, "Ben", DateTime.Now, DateTime.Now.AddMinutes(30), false, "", FormsAuthentication.FormsCookiePath);
+            string encTicket = FormsAuthentication.Encrypt(ticket);
+            Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+        //    Session.Add("CurrentUser", "yo");
+            ViewBag.aa = Session["CurrentUser"];
+
             return View();
         }
 
